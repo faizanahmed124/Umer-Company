@@ -3,106 +3,585 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ScrollUpButton from '../components/ScrollUpButton.astro';
+
+const services = [
+  {
+    id: "01",
+    title: "Material Supplier",
+    subtitle: "SS & Industrial Grade Materials",
+    category: "Supply",
+    description:
+      "We supply premium Stainless Steel (SS) materials, industrial pipes, valves, fittings, and flanges sourced to meet international standards. Our inventory is maintained for immediate dispatch to sites across Pakistan.",
+    features: [
+      "SS Pipes & Fittings (all grades)",
+      "Industrial Valves & Flanges",
+      "Pipe Bends & Reducers",
+      "Pressure Gauges & Instruments",
+    ],
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
+    icon: `<path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>`,
+    accent: "#b87716",
+  },
+  {
+    id: "02",
+    title: "Material 2 Supplier",
+    subtitle: "GI Pipes, Steel & Wooden Materials",
+    category: "Supply",
+    description:
+      "We provide a comprehensive range of GI pipes, structural steel sections, wooden crates, and packaging materials. Every item is quality-checked before delivery to ensure full project compliance.",
+    features: [
+      "GI Pipes — all sizes & schedules",
+      "Structural Steel & Metal Sections",
+      "Wooden Crates & Pallets",
+      "Insulation Raw Material",
+    ],
+    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80",
+    icon: `<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>`,
+    accent: "#d4a000",
+  },
+  {
+    id: "03",
+    title: "Mechanical Services",
+    subtitle: "Plant Installation & Fabrication",
+    category: "Mechanical",
+    description:
+      "Our certified mechanical workforce handles new plant installation, structural steel erection, pipe fitting, welding, grinding, and gas cutting. We deliver every project with full safety compliance and precision engineering.",
+    features: [
+      "New Plant Installation & Commissioning",
+      "Welding (MIG, TIG & Arc)",
+      "Gas Cutting & Grinding",
+      "Structural Steel Erection",
+    ],
+    image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=900&q=80",
+    icon: `<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>`,
+    accent: "#c49a1a",
+  },
+  {
+    id: "04",
+    title: "Insulation & Ducting",
+    subtitle: "Thermal & Acoustic Solutions",
+    category: "Insulation",
+    description:
+      "We provide complete insulation and ducting services for industrial plants and commercial facilities — maximising energy efficiency, reducing heat loss, and keeping all pipeline networks within safe operating temperatures.",
+    features: [
+      "Steam & Hot Water Pipe Insulation",
+      "Cold Line & Chilled Water Insulation",
+      "HVAC Duct Fabrication & Installation",
+      "GI & Aluminium Cladding Finishing",
+    ],
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80",
+    icon: `<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+    accent: "#e8b84b",
+  },
+  {
+    id: "05",
+    title: "Loading & Unloading",
+    subtitle: "Heavy-Duty Material Handling",
+    category: "Labor",
+    description:
+      "Our trained labour teams manage safe and efficient loading, unloading, and on-site shifting of industrial materials, machinery, and heavy equipment — using proper lifting techniques and certified equipment operators.",
+    features: [
+      "Heavy Machinery Loading & Unloading",
+      "Forklift & Crane Operations",
+      "On-Site Material Shifting",
+      "Safe Rigging & Slinging",
+    ],
+    image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=900&q=80",
+    icon: `<path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><path d="M9 15h14"/>`,
+    accent: "#f0a500",
+  },
+  {
+    id: "06",
+    title: "Material Packing",
+    subtitle: "Industrial Packaging Solutions",
+    category: "Packing",
+    description:
+      "We offer industrial-grade material packing services to protect goods during storage and transit. Our packing methods conform to international standards, minimising damage and ensuring safe delivery of all materials.",
+    features: [
+      "Shrink-Wrap & Stretch Film Packing",
+      "Bubble Wrap & Foam Protection",
+      "Pallet Wrapping & Strapping",
+      "Labelling & Documentation",
+    ],
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=80",
+    icon: `<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>`,
+    accent: "#b8860b",
+  },
+  {
+    id: "07",
+    title: "Wooden Packing",
+    subtitle: "Custom Wooden Crating & Cases",
+    category: "Packing",
+    description:
+      "We fabricate and supply custom wooden crates, cases, and pallets for industrial equipment, heavy machinery, and export-standard shipments. All wooden packing is ISPM-15 compliant for international transit.",
+    features: [
+      "Custom Wooden Crates (all sizes)",
+      "Export-Standard ISPM-15 Compliant",
+      "Heavy Equipment Wooden Cases",
+      "Skids & Industrial Pallets",
+    ],
+    image: "https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=900&q=80",
+    icon: `<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>`,
+    accent: "#c0820a",
+  },
+  {
+    id: "08",
+    title: "Safety Cautions",
+    subtitle: "HSE Compliance & Safety Management",
+    category: "Safety",
+    description:
+      "We enforce strict Health, Safety & Environment (HSE) practices on every project. Our safety-trained workforce follows all site regulations, PPE requirements, and risk assessment protocols to ensure zero-incident operations.",
+    features: [
+      "Full PPE Provision & Compliance",
+      "On-Site HSE Supervision",
+      "Risk Assessment & Method Statements",
+      "Safety Induction for All Workers",
+    ],
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&q=80",
+    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+    accent: "#daa520",
+  },
+];
+
+const categories = ["All", ...new Set(services.map(s => s.category))];
 ---
 
-<Layout title="Services - Umar & Company" description="Services page - Umar & Company">
+<Layout title="Services - Umar & Company" description="Complete range of industrial services by Umar & Company">
   <Navbar />
-  <section class="coming-section">
-    <div class="blob blob--1" aria-hidden="true"></div>
-    <div class="blob blob--2" aria-hidden="true"></div>
-    <div class="grid-bg" aria-hidden="true"></div>
-    <div class="coming-content">
-      <div class="coming-badge">
-        <span class="badge-dot"></span>
-        Under Construction
-        <span class="badge-dot"></span>
-      </div>
-      <h1 class="coming-heading">
-        <span class="h-white">Faizan is </span><span class="h-gold">Working</span><br/>
-        <span class="h-white">on </span><span class="h-gold">Services</span>
+
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <section class="svc-hero">
+
+    <div class="hero-inner">
+      <span class="hero-badge">
+        <span class="bdot"></span> Our Services <span class="bdot"></span>
+      </span>
+      <h1 class="hero-title">
+        We Offer a Range of<br/>
+        <em class="title-em">Industrial Services</em>
       </h1>
-      <p class="coming-sub">Full services breakdown is coming soon. Stay tuned.</p>
-      <div class="loader" aria-label="Loading">
-        <span class="ldot"></span>
-        <span class="ldot"></span>
-        <span class="ldot"></span>
+      <p class="hero-sub">
+        From raw material supply and mechanical installation to insulation,
+        packing, and on-site safety — Umar &amp; Company delivers every service
+        with precision, reliability, and 34+ years of field experience.
+      </p>
+      <!-- Quick stat pills -->
+      <div class="stat-pills">
+        {[
+          { v: "34+", l: "Years Experience" },
+          { v: "8",   l: "Service Verticals" },
+          { v: "50+", l: "Projects Delivered" },
+          { v: "14+", l: "Trusted Clients" },
+        ].map(s => (
+          <div class="pill">
+            <span class="pill-v">{s.v}</span>
+            <span class="pill-l">{s.l}</span>
+          </div>
+        ))}
       </div>
-      <a href="/" class="back-btn">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-        Back to Home
-      </a>
     </div>
   </section>
+
+  <!-- ══ FILTER ════════════════════════════════════════ -->
+  <div class="filter-strip">
+    <div class="content-container filter-inner">
+      {categories.map((cat, i) => (
+        <button class={`ftab ${i === 0 ? 'active' : ''}`} data-cat={cat}>
+          {cat}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- ══ SERVICES LIST ══════════════════════════════════ -->
+  <main class="svc-main">
+    <div class="content-container">
+      <div class="svc-list" id="svcList">
+        {services.map((s, idx) => (
+          <article
+            class="svc-row"
+            style={`--accent:${s.accent}`}
+            data-category={s.category}
+          >
+            <!-- Number ribbon -->
+            <div class="row-num">{s.id}</div>
+
+            <!-- Image side -->
+            <div class={`row-img-wrap ${idx % 2 !== 0 ? 'order-last-lg' : ''}`}>
+              <div class="row-img-inner">
+                <img src={s.image} alt={s.title} class="row-img" loading="lazy"/>
+                <div class="row-img-overlay"></div>
+                <!-- floating category badge -->
+                <span class="row-cat-badge">{s.category}</span>
+                <!-- decorative corner accent -->
+                <div class="corner-accent tl"></div>
+                <div class="corner-accent br"></div>
+              </div>
+            </div>
+
+            <!-- Content side -->
+            <div class="row-content">
+              <!-- Icon circle -->
+              <div class="svc-icon-wrap">
+                <svg width="24" height="24" fill="none" stroke="var(--accent)"
+                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  viewBox="0 0 24 24" set:html={s.icon}></svg>
+              </div>
+
+              <p class="svc-id-label">Service {s.id}</p>
+              <h2 class="svc-title">{s.title}</h2>
+              <p class="svc-subtitle">{s.subtitle}</p>
+              <p class="svc-desc">{s.description}</p>
+
+              <!-- Feature list -->
+              <ul class="feat-list">
+                {s.features.map(f => (
+                  <li class="feat-item">
+                    <span class="feat-check">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                        stroke="var(--accent)" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <!-- CTA -->
+              <a href="/tailcast/contact" class="svc-cta">
+                Request This Service
+                <svg width="14" height="14" fill="none" stroke="currentColor"
+                  stroke-width="2.5" viewBox="0 0 24 24">
+                  <path d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div id="emptyState" style="display:none" class="empty-state">
+        No services found for this category.
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ BOTTOM CTA ═════════════════════════════════════ -->
+  <section class="bottom-cta">
+    <div class="content-container cta-inner">
+      <h2 class="cta-title">
+        Ready to Work with <em>Umar &amp; Company?</em>
+      </h2>
+      <p class="cta-sub">
+        Get a free consultation and quote for your next industrial project.
+      </p>
+      <div class="cta-btns">
+        <a href="/contact" class="btn-gold">
+          Get a Quote
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="/projects" class="btn-outline">
+          View Our Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
   <Footer />
   <ScrollUpButton />
 </Layout>
 
 <style>
-  .coming-section {
-    position:relative; min-height:100vh; background:#0d0e11;
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden; padding:2rem;
+  /* ── HERO ── */
+  .svc-hero {
+    position: relative;
+    background: #17181b;
+    padding: 9rem 1.5rem 5.5rem;
+    display: flex; align-items: center; justify-content: center;
   }
-  .grid-bg {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
-    background-size:52px 52px; pointer-events:none; z-index:0;
+
+  .hero-inner {
+    position: relative; z-index: 1; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+    max-width: 780px;
+    animation: fadeUp 0.8s cubic-bezier(.22,1,.36,1) both;
   }
-  .blob { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; }
-  .blob--1 { width:500px;height:500px;top:-150px;left:-150px;background:rgba(184,119,22,0.12);animation:bf1 8s ease-in-out infinite alternate; }
-  .blob--2 { width:400px;height:400px;bottom:-120px;right:-100px;background:rgba(184,119,22,0.09);animation:bf1 10s ease-in-out infinite alternate-reverse; }
-  @keyframes bf1 { from{transform:scale(1)} to{transform:scale(1.2) translate(15px,-15px)} }
-  .coming-content {
-    position:relative; z-index:1; text-align:center;
-    display:flex; flex-direction:column; align-items:center; gap:1.5rem;
-    animation:fadeUp 0.8s cubic-bezier(.22,1,.36,1) both;
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #b87716;
+    border: 1px solid rgba(184,119,22,0.30); border-radius: 999px;
+    padding: 7px 18px; background: rgba(184,119,22,0.07);
   }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:none} }
-  .coming-badge {
-    display:inline-flex; align-items:center; gap:10px;
-    font-family:'DM Sans',sans-serif; font-size:0.72rem; font-weight:600;
-    letter-spacing:0.25em; text-transform:uppercase; color:#b87716;
-    border:1px solid rgba(184,119,22,0.3); border-radius:999px;
-    padding:7px 20px; background:rgba(184,119,22,0.07);
+  .bdot {
+    display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: #b87716; animation: bp 1.8s ease infinite;
   }
-  .badge-dot {
-    display:inline-block; width:5px; height:5px; border-radius:50%;
-    background:#b87716; opacity:0.8; animation:bp 1.8s ease infinite;
+  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.5)} }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 800;
+    line-height: 1.1; letter-spacing: -0.02em; color: #fff; margin: 0;
   }
-  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.4)} }
-  .coming-heading {
-    font-family:'Playfair Display','Georgia',serif;
-    font-weight:800; font-size:clamp(3rem,9vw,7.5rem);
-    line-height:1.08; letter-spacing:-0.02em; margin:0;
+  .title-em { color: #b87716; font-style: italic; font-family: 'Georgia', serif; }
+
+  .hero-sub {
+    max-width: 560px; color: rgba(255,255,255,0.50);
+    font-size: clamp(0.88rem, 1.4vw, 1rem); line-height: 1.8; margin: 0;
   }
-  .h-white { color:#ffffff; font-style:normal; }
-  .h-gold  { color:#b87716; font-style:italic; }
-  .coming-sub {
-    font-family:'DM Sans',sans-serif; color:#6b7280;
-    font-size:clamp(1rem,2vw,1.1rem); line-height:1.8;
-    max-width:420px; margin:0;
+
+  /* Stat pills */
+  .stat-pills {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 0.75rem; margin-top: 0.5rem;
   }
-  .loader { display:flex; gap:10px; align-items:center; margin:0.5rem 0; }
-  .ldot {
-    width:10px; height:10px; border-radius:50%;
-    background:#b87716; opacity:0.8; animation:lb 1.2s ease infinite;
+  .pill {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(184,119,22,0.20);
+    border-radius: 14px; padding: 0.9rem 1.75rem;
   }
-  .ldot:nth-child(2){animation-delay:.2s;background:#d4a000;}
-  .ldot:nth-child(3){animation-delay:.4s;background:#fff;opacity:.25;}
-  @keyframes lb { 0%,80%,100%{transform:scale(1);opacity:.8} 40%{transform:scale(1.5);opacity:1} }
-  .back-btn {
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'DM Sans',sans-serif; font-size:0.9rem; font-weight:600;
-    color:#9ca3af; text-decoration:none;
-    border:1px solid rgba(255,255,255,0.1); border-radius:999px;
-    padding:10px 24px; background:rgba(255,255,255,0.04);
-    transition:color .25s,border-color .25s,background .25s,transform .25s;
-    margin-top:0.5rem;
+  .pill-v { font-size: 1.5rem; font-weight: 800; color: #b87716; line-height: 1; }
+  .pill-l { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+
+  /* ── Filter strip ── */
+  .filter-strip {
+    background: #17181b;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 1rem 0;
+    position: sticky; top: 0; z-index: 40;
+    backdrop-filter: blur(12px);
   }
-  .back-btn:hover {
-    color:#fff; border-color:rgba(184,119,22,0.4);
-    background:rgba(184,119,22,0.08); transform:translateX(-4px);
+  .filter-inner { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .ftab {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;
+    padding: 7px 18px; border-radius: 999px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.09);
+    background: transparent; color: rgba(255,255,255,0.40);
+    transition: all 0.25s;
   }
+  .ftab:hover { color: #b87716; border-color: rgba(184,119,22,0.35); background: rgba(184,119,22,0.07); }
+  .ftab.active { background: #b87716; border-color: #b87716; color: #0d0e11; font-weight: 700; box-shadow: 0 4px 14px rgba(184,119,22,0.35); }
+
+  /* ── Main section ── */
+  .svc-main {
+    background: #17181b;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  /* Service rows */
+  .svc-list { display: flex; flex-direction: column; gap: 0; }
+
+  .svc-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    transition: background 0.3s;
+  }
+  .svc-row:last-child { border-bottom: none; }
+  .svc-row:hover { background: rgba(255,255,255,0.02); }
+
+  @media (min-width: 900px) {
+    .svc-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .svc-row:nth-child(even) .row-img-wrap { order: 2; }
+    .svc-row:nth-child(even) .row-content  { order: 1; }
+  }
+
+  /* Row number */
+  .row-num {
+    position: absolute; top: 3.5rem; right: 0;
+    font-family: monospace; font-size: 5rem; font-weight: 900;
+    color: rgba(255,255,255,0.025); line-height: 1;
+    pointer-events: none; user-select: none;
+    letter-spacing: -0.05em;
+  }
+  @media (max-width: 899px) { .row-num { font-size: 3.5rem; } }
+
+  /* Image */
+  .row-img-wrap { position: relative; }
+  .row-img-inner {
+    position: relative; border-radius: 20px; overflow: hidden;
+    aspect-ratio: 4/3;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.50);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .row-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.7s;
+  }
+  .svc-row:hover .row-img { transform: scale(1.04); }
+  .row-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.40) 100%);
+  }
+  /* Accent border glow on hover */
+  .row-img-inner::after {
+    content: '';
+    position: absolute; inset: 0; border-radius: inherit;
+    border: 2px solid color-mix(in srgb, var(--accent) 0%, transparent);
+    transition: border-color 0.4s;
+    pointer-events: none;
+  }
+  .svc-row:hover .row-img-inner::after {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  /* Category badge on image */
+  .row-cat-badge {
+    position: absolute; top: 16px; left: 16px;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 18%, rgba(0,0,0,0.5));
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Corner accents */
+  .corner-accent {
+    position: absolute; width: 20px; height: 20px; pointer-events: none;
+  }
+  .corner-accent.tl { top: -1px; left: -1px; border-top: 3px solid var(--accent); border-left: 3px solid var(--accent); border-radius: 20px 0 0 0; }
+  .corner-accent.br { bottom: -1px; right: -1px; border-bottom: 3px solid var(--accent); border-right: 3px solid var(--accent); border-radius: 0 0 20px 0; }
+
+  /* Content */
+  .row-content {
+    display: flex; flex-direction: column; gap: 1rem;
+    position: relative; z-index: 1;
+  }
+
+  /* Icon */
+  .svc-icon-wrap {
+    width: 54px; height: 54px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+
+  .svc-id-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin: 0;
+  }
+  .svc-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;
+    color: #f1f5f9; line-height: 1.15; letter-spacing: -0.01em; margin: 0;
+  }
+  .svc-subtitle {
+    font-size: 0.85rem; font-weight: 600;
+    color: color-mix(in srgb, var(--accent) 80%, #fff);
+    margin: -0.25rem 0 0;
+  }
+  .svc-desc {
+    font-size: 0.88rem; color: rgba(255,255,255,0.48);
+    line-height: 1.8; margin: 0;
+  }
+
+  /* Features */
+  .feat-list { list-style: none; padding: 0; margin: 0.25rem 0 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .feat-item {
+    display: flex; align-items: center; gap: 0.625rem;
+    font-size: 0.83rem; color: rgba(255,255,255,0.65);
+  }
+  .feat-check {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+
+  /* CTA button */
+  .svc-cta {
+    margin-top: 0.5rem;
+    display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+    padding: 11px 24px; border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    color: var(--accent);
+    font-size: 0.8rem; font-weight: 700; text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .svc-cta:hover {
+    background: var(--accent); color: #0d0e11;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center; padding: 5rem 2rem;
+    color: rgba(255,255,255,0.25); font-size: 0.9rem;
+  }
+
+  /* ── Bottom CTA ── */
+  .bottom-cta {
+    position: relative; overflow: hidden;
+    background: #17181b;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 5.5rem 1.5rem;
+  }
+  .cta-inner {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1.5rem; text-align: center;
+  }
+  .cta-title {
+    font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 800;
+    color: #fff; margin: 0; line-height: 1.15;
+  }
+  .cta-title em { color: #b87716; font-style: italic; font-family: 'Georgia', serif; }
+  .cta-sub { color: rgba(255,255,255,0.45); font-size: 1rem; margin: 0; max-width: 420px; }
+  .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 32px; border-radius: 999px;
+    background: #b87716; color: #0d0e11;
+    font-size: 0.875rem; font-weight: 800; text-decoration: none; letter-spacing: 0.02em;
+    box-shadow: 0 4px 20px rgba(184,119,22,0.40);
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .btn-gold:hover { background: #d4a000; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(184,119,22,0.55); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 32px; border-radius: 999px;
+    border: 1px solid rgba(184,119,22,0.35); color: #b87716;
+    background: rgba(184,119,22,0.06);
+    font-size: 0.875rem; font-weight: 700; text-decoration: none;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .btn-outline:hover { background: rgba(184,119,22,0.12); border-color: rgba(184,119,22,0.60); transform: translateY(-2px); }
 </style>
+
+<script>
+  const tabs  = document.querySelectorAll<HTMLButtonElement>('.ftab');
+  const rows  = document.querySelectorAll<HTMLElement>('.svc-row');
+  const empty = document.getElementById('emptyState')!;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      let n = 0;
+      rows.forEach(row => {
+        const show = cat === 'All' || row.dataset.category === cat;
+        row.style.display = show ? '' : 'none';
+        if (show) n++;
+      });
+      empty.style.display = n === 0 ? 'block' : 'none';
+    });
+  });
+</script>

@@ -3,108 +3,572 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ScrollUpButton from '../../components/ScrollUpButton.astro';
+
+const projects = [
+  {
+    id: 1,
+    company: "Nestle Milk Pack Ltd.",
+    location: "KabirWala",
+    category: "Food & Beverage",
+    scope: "Mechanical Installation & Pipe Insulation",
+    description: "Complete mechanical services including pipe insulation, steam line installation, and plant commissioning for Nestle's KabirWala facility.",
+    accentColor: "#b87716",
+    tags: ["Insulation", "Mechanical", "Commissioning"],
+    // Replace with your actual image: /images/projects/nestle-kabir.jpg
+    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80",
+  },
+  {
+    id: 2,
+    company: "Nestle Milk Pack Ltd.",
+    location: "Sheikhupura",
+    category: "Food & Beverage",
+    scope: "Insulation & Ducting Works",
+    description: "Full insulation and ducting services for the Sheikhupura plant — including cold line, steam lines, and aluminium cladding finishing.",
+    accentColor: "#d4a000",
+    tags: ["Ducting", "Insulation", "Cladding"],
+    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&q=80",
+  },
+  {
+    id: 3,
+    company: "Nishat Group of Industries",
+    location: "Sheikh Fazl Road",
+    category: "Textile",
+    scope: "Structural Erection & Mechanical Works",
+    description: "Structural steel erection, plant installation, and welding works for Nishat's textile manufacturing unit on Sheikh Fazl Road.",
+    accentColor: "#c49a1a",
+    tags: ["Structural", "Welding", "Erection"],
+    image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=700&q=80",
+  },
+  {
+    id: 4,
+    company: "Nishat Group of Industries",
+    location: "Chunnian",
+    category: "Textile",
+    scope: "Plant Installation & Insulation",
+    description: "New plant installation services including pipe fitting, system assembly, and complete thermal insulation works at Chunnian facility.",
+    accentColor: "#e8b84b",
+    tags: ["Installation", "Pipe Fitting", "Insulation"],
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80",
+  },
+  {
+    id: 5,
+    company: "Sapphire Group's",
+    location: "Lahore",
+    category: "Textile",
+    scope: "Mechanical & Ducting Services",
+    description: "End-to-end mechanical services and HVAC ducting works for Sapphire Group's manufacturing facility in Lahore.",
+    accentColor: "#f0a500",
+    tags: ["HVAC", "Mechanical", "Ducting"],
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80",
+  },
+  {
+    id: 6,
+    company: "Atlas Honda PVT Ltd.",
+    location: "Sheikhupura",
+    category: "Automotive",
+    scope: "Plant Commissioning & Pipe Works",
+    description: "Comprehensive plant commissioning, pipe insulation, and mechanical installation for Atlas Honda's Sheikhupura manufacturing plant.",
+    accentColor: "#b8860b",
+    tags: ["Commissioning", "Insulation", "Mechanical"],
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=700&q=80",
+  },
+  {
+    id: 7,
+    company: "Bhanero Power Ltd.",
+    location: "Faisalabad",
+    category: "Energy",
+    scope: "Structural Erection & Mechanical Works",
+    description: "Heavy structural steel erection and complete mechanical installation works for Bhanero Power's industrial energy facility.",
+    accentColor: "#c0820a",
+    tags: ["Structural", "Power", "Erection"],
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80",
+  },
+  {
+    id: 8,
+    company: "Crescent Limited",
+    location: "Lahore",
+    category: "Manufacturing",
+    scope: "Insulation & Cladding Services",
+    description: "Full scope insulation services including steam line, chilled water insulation, and GI cladding finishing at Crescent Limited.",
+    accentColor: "#d49510",
+    tags: ["Insulation", "Cladding", "Steam Lines"],
+    image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=700&q=80",
+  },
+  {
+    id: 9,
+    company: "B.B. Jan PVT Ltd.",
+    location: "Lahore",
+    category: "Manufacturing",
+    scope: "Mechanical & Supply Works",
+    description: "Material supply and mechanical installation services provided to B.B. Jan PVT Ltd. for their industrial operations in Lahore.",
+    accentColor: "#b87716",
+    tags: ["Supply", "Mechanical", "Installation"],
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=700&q=80",
+  },
+  {
+    id: 10,
+    company: "PEPSICO PVT Ltd.",
+    location: "Sundar Estate, Lahore",
+    category: "Food & Beverage",
+    scope: "Insulation, Ducting & Plant Services",
+    description: "Complete insulation and ducting installation for PEPSICO's Sundar Estate facility — steam lines, cold lines, and HVAC systems.",
+    accentColor: "#b8860b",
+    tags: ["HVAC", "Insulation", "Ducting"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80",
+  },
+  {
+    id: 11,
+    company: "AHN Group",
+    location: "Sheikhupura",
+    category: "Steel & Construction",
+    scope: "Structural Erection & Fabrication",
+    description: "Large-scale structural steel fabrication and erection works for AHN Group's industrial compound in Sheikhupura.",
+    accentColor: "#f0a500",
+    tags: ["Structural", "Fabrication", "Erection"],
+    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80",
+  },
+  {
+    id: 12,
+    company: "AHN Steel",
+    location: "Sheikhupura",
+    category: "Steel & Construction",
+    scope: "Mechanical Installation & Supply",
+    description: "Steel plant mechanical installation and raw material supply for AHN Steel's manufacturing operations in Sheikhupura.",
+    accentColor: "#d4a000",
+    tags: ["Steel", "Supply", "Mechanical"],
+    image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=700&q=80",
+  },
+  {
+    id: 13,
+    company: "Ghani Float Glass Ltd.",
+    location: "Lahore",
+    category: "Manufacturing",
+    scope: "Insulation & Mechanical Works",
+    description: "Specialised thermal insulation and mechanical works for Ghani Float Glass's high-temperature industrial operations.",
+    accentColor: "#c49a1a",
+    tags: ["Insulation", "Mechanical", "High-Temp"],
+    image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=700&q=80",
+  },
+];
+
+const categories = ["All", ...new Set(projects.map(p => p.category))];
+const stats = [
+  { value: "13+", label: "Projects Completed" },
+  { value: "14+", label: "Clients Served" },
+  { value: "34+", label: "Years Experience" },
+  { value: "100%", label: "On-Time Delivery" },
+];
 ---
 
-<Layout title="Projects - Umar & Company" description="Projects page - Umar & Company">
+<Layout title="Projects - Umar & Company" description="Our completed industrial projects across Pakistan">
   <Navbar />
-  <section class="coming-section">
-    <div class="blob blob--1" aria-hidden="true"></div>
-    <div class="blob blob--2" aria-hidden="true"></div>
-    <div class="grid-bg" aria-hidden="true"></div>
-    <div class="coming-content">
-      <div class="coming-badge">
-        <span class="badge-dot"></span>
-        Under Construction
-        <span class="badge-dot"></span>
-      </div>
-      <h1 class="coming-heading">
-        <span class="h-white">Faizan is </span><span class="h-gold">Working</span><br/>
-        <span class="h-white">on </span><span class="h-gold">Projects</span>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+
+    <div class="hero-inner">
+      <span class="page-badge">
+        <span class="bdot"></span>
+        Our Work
+        <span class="bdot"></span>
+      </span>
+      <h1 class="page-title">
+        Projects with <span class="title-accent">Companies</span>
       </h1>
-      <p class="coming-sub">Our full project portfolio is being compiled. Coming soon.</p>
-      <div class="loader" aria-label="Loading">
-        <span class="ldot"></span>
-        <span class="ldot"></span>
-        <span class="ldot"></span>
+      <p class="page-sub">
+        A portfolio of industrial installations, mechanical works, and insulation projects
+        delivered across Pakistan's leading manufacturing and energy sector companies.
+      </p>
+
+      <!-- Stats row -->
+      <div class="stat-row">
+        {stats.map(s => (
+          <div class="stat-item">
+            <span class="stat-val">{s.value}</span>
+            <span class="stat-lbl">{s.label}</span>
+          </div>
+        ))}
       </div>
-      <a href="/" class="back-btn">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-        Back to Home
+    </div>
+  </section>
+
+  <!-- ── PROJECTS GRID ── -->
+  <section class="projects-section">
+    <div class="content-container">
+
+      <!-- Filter tabs -->
+      <div class="filter-bar" id="filterBar">
+        {categories.map((cat, i) => (
+          <button
+            class={`filter-btn ${i === 0 ? 'active' : ''}`}
+            data-cat={cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grid -->
+      <div class="projects-grid" id="projectsGrid">
+        {projects.map(p => (
+          <article
+            class="proj-card"
+            style={`--accent:${p.accentColor}`}
+            data-category={p.category}
+          >
+            <!-- Image -->
+            <div class="card-img-wrap">
+              <img src={p.image} alt={p.company} class="card-img" loading="lazy" />
+              <div class="img-overlay"></div>
+              <!-- Category pill -->
+              <span class="cat-pill">{p.category}</span>
+              <!-- Accent bar -->
+              <div class="img-accent-bar"></div>
+            </div>
+
+            <!-- Body -->
+            <div class="card-body">
+              <!-- Header -->
+              <div class="card-header">
+                <div class="abbr-box">
+                  <span>{p.company.split(' ').map((w:string) => w[0]).slice(0,2).join('')}</span>
+                </div>
+                <div>
+                  <h3 class="card-title">{p.company}</h3>
+                  <p class="card-loc">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                      <circle cx="12" cy="9" r="2.5"/>
+                    </svg>
+                    {p.location}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Scope -->
+              <p class="card-scope">{p.scope}</p>
+
+              <!-- Description -->
+              <p class="card-desc">{p.description}</p>
+
+              <!-- Tags -->
+              <div class="card-tags">
+                {p.tags.map((t:string) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+
+              <!-- Footer -->
+              <div class="card-footer">
+                <span class="verified">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Completed
+                </span>
+                <span class="proj-id">#{String(p.id).padStart(2,'0')}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty state (hidden by default) -->
+      <div class="empty-state" id="emptyState" style="display:none">
+        <p>No projects found for this category.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CTA STRIP ── -->
+  <section class="cta-strip">
+    <div class="content-container cta-inner">
+      <div>
+        <h2 class="cta-title">Ready to start your project?</h2>
+        <p class="cta-sub">Get in touch with our team for a free consultation and quote.</p>
+      </div>
+      <a href="/contact" class="cta-btn">
+        Get a Quote
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path d="M9 5l7 7-7 7"/>
+        </svg>
       </a>
     </div>
   </section>
+
   <Footer />
   <ScrollUpButton />
 </Layout>
 
 <style>
-  .coming-section {
-    position:relative; min-height:100vh; background:#0d0e11;
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden; padding:2rem;
+  /* ── Page hero ── */
+  .page-hero {
+    position: relative;
+    background: #17181b;
+    padding: 8rem 1.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .grid-bg {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
-    background-size:52px 52px; pointer-events:none; z-index:0;
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+    animation: fadeUp 0.8s cubic-bezier(.22,1,.36,1) both;
   }
-  .blob { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; }
-  .blob--1 { width:500px;height:500px;top:-150px;left:-150px;background:rgba(184,119,22,0.12);animation:bf1 8s ease-in-out infinite alternate; }
-  .blob--2 { width:400px;height:400px;bottom:-120px;right:-100px;background:rgba(184,119,22,0.09);animation:bf1 10s ease-in-out infinite alternate-reverse; }
-  @keyframes bf1 { from{transform:scale(1)} to{transform:scale(1.2) translate(15px,-15px)} }
-  .coming-content {
-    position:relative; z-index:1; text-align:center;
-    display:flex; flex-direction:column; align-items:center; gap:1.5rem;
-    animation:fadeUp 0.8s cubic-bezier(.22,1,.36,1) both;
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+
+  .page-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #b87716;
+    border: 1px solid rgba(184,119,22,0.30); border-radius: 999px;
+    padding: 7px 18px; background: rgba(184,119,22,0.07);
   }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:none} }
-  .coming-badge {
-    display:inline-flex; align-items:center; gap:10px;
-    font-family:'DM Sans',sans-serif; font-size:0.72rem; font-weight:600;
-    letter-spacing:0.25em; text-transform:uppercase; color:#b87716;
-    border:1px solid rgba(184,119,22,0.3); border-radius:999px;
-    padding:7px 20px; background:rgba(184,119,22,0.07);
+  .bdot {
+    display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: #b87716; animation: bp 1.8s ease infinite;
   }
-  .badge-dot {
-    display:inline-block; width:5px; height:5px; border-radius:50%;
-    background:#b87716; opacity:0.8;
-    animation:bp 1.8s ease infinite;
+  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.5)} }
+
+  .page-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+    color: #fff; margin: 0;
   }
-  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.4)} }
-  .coming-heading {
-    font-family:'Playfair Display','Georgia',serif;
-    font-weight:800; font-size:clamp(3rem,9vw,7.5rem);
-    line-height:1.08; letter-spacing:-0.02em; margin:0;
+  .title-accent { color: #b87716; font-style: italic; }
+
+  .page-sub {
+    max-width: 560px; color: rgba(255,255,255,0.50);
+    font-size: clamp(0.9rem, 1.5vw, 1rem); line-height: 1.8; margin: 0;
   }
-  .h-white { color:#ffffff; font-style:normal; }
-  .h-gold  { color:#b87716; font-style:italic; }
-  .coming-sub {
-    font-family:'DM Sans',sans-serif; color:#6b7280;
-    font-size:clamp(1rem,2vw,1.1rem); line-height:1.8;
-    max-width:420px; margin:0;
+
+  /* Stats */
+  .stat-row {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 0; margin-top: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+    overflow: hidden; background: rgba(255,255,255,0.02);
   }
-  .loader { display:flex; gap:10px; align-items:center; margin:0.5rem 0; }
-  .ldot {
-    width:10px; height:10px; border-radius:50%;
-    background:#b87716; opacity:0.8;
-    animation:lb 1.2s ease infinite;
+  .stat-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; padding: 1.5rem 2.5rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
   }
-  .ldot:nth-child(2){animation-delay:.2s;background:#d4a000;}
-  .ldot:nth-child(3){animation-delay:.4s;background:#fff;opacity:.25;}
-  @keyframes lb { 0%,80%,100%{transform:scale(1);opacity:.8} 40%{transform:scale(1.5);opacity:1} }
-  .back-btn {
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'DM Sans',sans-serif; font-size:0.9rem; font-weight:600;
-    color:#9ca3af; text-decoration:none;
-    border:1px solid rgba(255,255,255,0.1); border-radius:999px;
-    padding:10px 24px; background:rgba(255,255,255,0.04);
-    transition:color .25s,border-color .25s,background .25s,transform .25s;
-    margin-top:0.5rem;
+  .stat-item:last-child { border-right: none; }
+  .stat-val { font-size: 1.75rem; font-weight: 800; color: #fff; line-height: 1; }
+  .stat-lbl { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+  @media (max-width: 600px) {
+    .stat-row { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .stat-item:last-child { border-bottom: none; }
   }
-  .back-btn:hover {
-    color:#fff; border-color:rgba(184,119,22,0.4);
-    background:rgba(184,119,22,0.08); transform:translateX(-4px);
+
+  /* ── Projects section ── */
+  .projects-section {
+    background: #17181b;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 3rem;
+  }
+  .filter-btn {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+    padding: 8px 20px; border-radius: 999px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.45);
+    transition: all 0.25s;
+  }
+  .filter-btn:hover {
+    border-color: rgba(184,119,22,0.40);
+    color: #fcd28a;
+    background: rgba(184,119,22,0.08);
+  }
+  .filter-btn.active {
+    background: #b87716;
+    border-color: #b87716;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(184,119,22,0.35);
+  }
+
+  /* Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px)  { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* Card */
+  .proj-card {
+    display: flex; flex-direction: column;
+    border-radius: 18px; overflow: hidden;
+    background: #1e1f24;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+    position: relative;
+  }
+  .proj-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.45),
+                0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+
+  /* Image */
+  .card-img-wrap {
+    position: relative; height: 200px; overflow: hidden;
+  }
+  .card-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .proj-card:hover .card-img { transform: scale(1.06); }
+  .img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(23,24,27,0.08) 0%, rgba(23,24,27,0.55) 60%, #17181b 100%);
+  }
+  .img-accent-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); opacity: 0.85;
+  }
+  .cat-pill {
+    position: absolute; top: 14px; left: 14px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 20%, rgba(0,0,0,0.5));
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Body */
+  .card-body {
+    display: flex; flex-direction: column; gap: 0.75rem;
+    padding: 1.25rem 1.25rem 1.125rem; flex: 1;
+  }
+  .card-header {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .abbr-box {
+    flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    font-family: monospace; font-size: 0.75rem; font-weight: 900;
+    color: var(--accent); letter-spacing: 0.05em;
+  }
+  .card-title {
+    font-size: 0.9rem; font-weight: 700; color: #f1f5f9;
+    line-height: 1.35; margin: 0;
+  }
+  .card-loc {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 0.68rem; color: rgba(255,255,255,0.35); margin: 2px 0 0;
+  }
+  .card-scope {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--accent); margin: 0;
+    letter-spacing: 0.02em;
+  }
+  .card-desc {
+    font-size: 0.78rem; color: rgba(255,255,255,0.45);
+    line-height: 1.7; margin: 0; flex: 1;
+  }
+  .card-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .tag {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em;
+    padding: 3px 10px; border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: rgba(255,255,255,0.40);
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 0.875rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    margin-top: auto;
+  }
+  .verified {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.68rem; font-weight: 600; color: #10b981;
+    background: rgba(16,185,129,0.10);
+    border: 1px solid rgba(16,185,129,0.22);
+    border-radius: 999px; padding: 3px 10px;
+  }
+  .proj-id {
+    font-family: monospace; font-size: 0.68rem;
+    color: rgba(255,255,255,0.2); letter-spacing: 0.05em;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center; padding: 4rem;
+    color: rgba(255,255,255,0.3); font-size: 0.9rem;
+  }
+
+  /* ── CTA strip ── */
+  .cta-strip {
+    background: #17181b;
+    padding: 4rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .cta-inner {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 2rem; text-align: center;
+  }
+  @media (min-width: 768px) {
+    .cta-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+  }
+  .cta-title {
+    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800;
+    color: #fff; margin: 0 0 0.5rem;
+  }
+  .cta-sub { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin: 0; }
+  .cta-btn {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; border-radius: 999px;
+    background: #b87716; color: #0d0e11;
+    font-size: 0.9rem; font-weight: 700; text-decoration: none;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 4px 20px rgba(184,119,22,0.35);
+  }
+  .cta-btn:hover {
+    background: #a06810; transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(184,119,22,0.50);
   }
 </style>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.proj-card');
+  const empty = document.getElementById('emptyState')!;
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cat = btn.dataset.cat;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = cat === 'All' || card.dataset.category === cat;
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      empty.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+</script>

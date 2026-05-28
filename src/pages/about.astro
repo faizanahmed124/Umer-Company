@@ -3,106 +3,578 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ScrollUpButton from '../components/ScrollUpButton.astro';
+
+const values = [
+  { title: "Professionalism", desc: "We uphold the highest standards of conduct on every project, from planning to final delivery." },
+  { title: "Integrity",       desc: "Honest communication and transparent dealings with every client, partner, and team member." },
+  { title: "Safety First",    desc: "Zero-compromise on HSE practices — every worker goes home safe, every single day." },
+  { title: "Quality",         desc: "We deliver work that meets or exceeds international standards, every time, without exception." },
+];
+
+const commitments = [
+  { icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`, label: "Safety Compliance",   desc: "Full HSE compliance on all sites and operations." },
+  { icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,  label: "On-Time Delivery",    desc: "Projects delivered on schedule, every time." },
+  { icon: `<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>`, label: "Skilled Workforce",   desc: "Trained, certified professionals across all trades." },
+  { icon: `<polyline points="20 6 9 17 4 12"/>`, label: "Quality Assurance",  desc: "Rigorous quality checks at every project stage." },
+  { icon: `<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>`, label: "Modern Equipment",    desc: "Latest tools and machinery for precision work." },
+  { icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>`, label: "Client Partnership",  desc: "Long-term relationships built on trust and results." },
+];
+
+const stats = [
+  { value: "1990", label: "Est. Year" },
+  { value: "34+",  label: "Years Active" },
+  { value: "50+",  label: "Projects Done" },
+  { value: "14+",  label: "Major Clients" },
+];
 ---
 
-<Layout title="About - Umar & Company" description="About page - Umar & Company">
+<Layout title="About - Umar & Company" description="About Umar & Company — Industrial services since 1990">
   <Navbar />
-  <section class="coming-section">
-    <div class="blob blob--1" aria-hidden="true"></div>
-    <div class="blob blob--2" aria-hidden="true"></div>
-    <div class="grid-bg" aria-hidden="true"></div>
-    <div class="coming-content">
-      <div class="coming-badge">
-        <span class="badge-dot"></span>
-        Under Construction
-        <span class="badge-dot"></span>
-      </div>
-      <h1 class="coming-heading">
-        <span class="h-white">Faizan is </span><span class="h-gold">Working</span><br/>
-        <span class="h-white">on </span><span class="h-gold">About</span>
+
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <section class="about-hero">
+    <div class="hero-content">
+      <span class="hero-badge"><span class="bdot"></span> About Us <span class="bdot"></span></span>
+      <h1 class="hero-title">
+        Umar &amp; <em>Company</em>
       </h1>
-      <p class="coming-sub">Our story and team are being crafted. Stay tuned.</p>
-      <div class="loader" aria-label="Loading">
-        <span class="ldot"></span>
-        <span class="ldot"></span>
-        <span class="ldot"></span>
+      <p class="hero-sub">
+        Established in 1990 — Pakistan's trusted partner for mechanical services,
+        industrial insulation, material supply, and plant installation.
+      </p>
+    </div>
+    <!-- Diagonal slash divider -->
+    <div class="hero-slash" aria-hidden="true"></div>
+  </section>
+
+  <!-- ══ STATS STRIP ════════════════════════════════════════ -->
+  <div class="stats-strip">
+    <div class="content-container stats-inner">
+      {stats.map(s => (
+        <div class="stat-cell">
+          <span class="stat-val">{s.value}</span>
+          <span class="stat-lbl">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- ══ COMPANY INTRO ══════════════════════════════════════ -->
+  <section class="section-pad">
+    <div class="content-container split-grid">
+      <!-- Text -->
+      <div class="split-text">
+        <span class="section-label">+ COMPANY INTRODUCTION +</span>
+        <h2 class="section-title">Who We <em>Are</em></h2>
+        <p class="body-text">
+          Umar &amp; Company has been operating since <strong class="gold">1990</strong>, successfully
+          completing projects with national and international companies and factories across Pakistan.
+        </p>
+        <p class="body-text">
+          We specialise in <strong class="gold">Mechanical Services</strong>, Labour Services,
+          M.S &amp; S.S. Material Supply, Insulation Material Supply, Factory Work, Boiler
+          Operating, Loading &amp; Unloading, Packing, Supply Lifting, and Excavation.
+          We also provide Ducting, Hot &amp; Cool Pipe Line Insulation, and all aspects of
+          Quality Control.
+        </p>
+        <ul class="check-list">
+          {["Residential & Commercial Industrial Works",
+            "Expert Project Management",
+            "Quality Materials & Skilled Workforce",
+            "Full HSE Compliance on All Sites"].map(item => (
+            <li>
+              <span class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b87716" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
-      <a href="/" class="back-btn">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-        Back to Home
-      </a>
+      <!-- Image mosaic -->
+      <div class="split-imgs">
+        <div class="img-main">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Industrial site" loading="lazy"/>
+          <div class="img-badge">Est. 1990</div>
+        </div>
+        <div class="img-small">
+          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80" alt="Mechanical work" loading="lazy"/>
+        </div>
+        <div class="img-small">
+          <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80" alt="Welding work" loading="lazy"/>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- ══ MISSION & VISION ═══════════════════════════════════ -->
+  <section class="section-pad bg-alt">
+    <div class="content-container">
+      <div class="mv-grid">
+        <!-- Mission -->
+        <div class="mv-card">
+          <div class="mv-icon">
+            <svg width="26" height="26" fill="none" stroke="#b87716" stroke-width="1.8" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+          </div>
+          <span class="mv-label">Our Mission</span>
+          <h3 class="mv-title">Delivering Excellence<br/><em>Every Project</em></h3>
+          <p class="mv-desc">
+            Our mission is to deliver construction and industrial excellence that stands the test of
+            time. We build structures not just with steel and concrete, but with integrity and craft.
+            Every project we undertake reflects our commitment to safety, quality, and client satisfaction.
+          </p>
+          <div class="mv-accent-bar"></div>
+        </div>
+        <!-- Vision -->
+        <div class="mv-card">
+          <div class="mv-icon">
+            <svg width="26" height="26" fill="none" stroke="#b87716" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <span class="mv-label">Our Vision</span>
+          <h3 class="mv-title">Pakistan's Most<br/><em>Trusted Partner</em></h3>
+          <p class="mv-desc">
+            We aspire to be the most trusted industrial services company in Pakistan — known for
+            precision installations, flawless delivery, and workforce development. We strive to make
+            continuous improvements in everything we do to better serve our clients.
+          </p>
+          <div class="mv-accent-bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VALUES ═════════════════════════════════════════════ -->
+  <section class="section-pad">
+    <div class="content-container">
+      <div class="sec-header">
+        <span class="section-label">+ WHAT DRIVES US +</span>
+        <h2 class="section-title">Our Core <em>Values</em></h2>
+      </div>
+      <div class="values-grid">
+        {values.map((v, i) => (
+          <div class="value-card">
+            <div class="value-num">{String(i + 1).padStart(2, '0')}</div>
+            <div class="value-line"></div>
+            <h3 class="value-title">{v.title}</h3>
+            <p class="value-desc">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GOALS ══════════════════════════════════════════════ -->
+  <section class="section-pad bg-alt">
+    <div class="content-container split-grid reverse">
+      <div class="split-text">
+        <span class="section-label">+ WHERE WE'RE HEADED +</span>
+        <h2 class="section-title">Our <em>Goals</em></h2>
+        <p class="body-text">
+          Our primary goal is to build long-term partnerships with Pakistan's leading industrial
+          and manufacturing companies. We aim to expand our service footprint, grow our
+          certified workforce, and set new benchmarks for quality and safety in every sector we serve.
+        </p>
+        <ul class="check-list">
+          {["Expand operations across all major industrial cities",
+            "Grow certified workforce to 500+ professionals",
+            "Achieve ISO certification for quality management",
+            "Deliver every project on time and within budget"].map(item => (
+            <li>
+              <span class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b87716" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="goal-visual">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=700&q=80" alt="Our goals" loading="lazy"/>
+        <div class="goal-overlay"></div>
+        <div class="goal-stat-box">
+          <span class="gsb-val">100%</span>
+          <span class="gsb-lbl">Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMMITMENTS ═════════════════════════════════════════ -->
+  <section class="section-pad">
+    <div class="content-container">
+      <div class="sec-header">
+        <span class="section-label">+ OUR PROMISE +</span>
+        <h2 class="section-title">Our <em>Commitments</em></h2>
+        <p class="sec-sub">Every project backed by six core commitments that define how we work.</p>
+      </div>
+      <div class="commit-grid">
+        {commitments.map(c => (
+          <div class="commit-card">
+            <div class="commit-icon">
+              <svg width="22" height="22" fill="none" stroke="#b87716" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
+                set:html={c.icon}></svg>
+            </div>
+            <h4 class="commit-title">{c.label}</h4>
+            <p class="commit-desc">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ QUALITY ═════════════════════════════════════════════ -->
+  <section class="section-pad bg-alt">
+    <div class="content-container split-grid">
+      <div class="split-text">
+        <span class="section-label">+ APPROACH TO QUALITY +</span>
+        <h2 class="section-title">Our <em>Quality</em><br/>Standards</h2>
+        <p class="body-text">
+          Quality at Umar &amp; Company is not a department — it is a culture. Our team follows
+          strict quality control protocols at every stage of every project. We use internationally
+          sourced materials, employ certified technicians, and conduct systematic inspections
+          to ensure all deliverables meet or exceed client expectations.
+        </p>
+        <p class="body-text">
+          We are continuously upgrading our processes, equipment, and training to deliver
+          better outcomes on every project we take on.
+        </p>
+        <div class="quality-badges">
+          {["Certified Materials", "Skilled Technicians", "Systematic Inspections", "International Standards"].map(b => (
+            <span class="qbadge">{b}</span>
+          ))}
+        </div>
+      </div>
+      <div class="quality-visual">
+        <div class="qv-card qv-top">
+          <svg width="32" height="32" fill="none" stroke="#b87716" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Quality<br/>Guaranteed</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="Quality work" loading="lazy"/>
+        <div class="qv-overlay"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ REGISTRATIONS ══════════════════════════════════════ -->
+  <section class="section-pad">
+    <div class="content-container">
+      <div class="sec-header">
+        <span class="section-label">+ OFFICIAL CREDENTIALS +</span>
+        <h2 class="section-title">Tax &amp; Year <em>Registrations</em></h2>
+        <p class="sec-sub">Umar &amp; Company is a fully registered, tax-compliant business operating under all applicable Pakistani regulations.</p>
+      </div>
+      <div class="reg-grid">
+        {[
+          { abbr: "FBR",  name: "Federal Board of Revenue",  detail: "National Tax Number (NTN) registered",  type: "FEDERAL" },
+          { abbr: "PRA",  name: "Punjab Revenue Authority",   detail: "Sales Tax on Services registered",       type: "PROVINCIAL" },
+          { abbr: "EOBI", name: "Employees Old-Age Benefits", detail: "EOBI registered employer",               type: "LABOUR" },
+          { abbr: "SESSI",name: "Social Security Institution", detail: "Employee social security compliant",    type: "WELFARE" },
+        ].map(r => (
+          <div class="reg-card">
+            <div class="reg-top">
+              <span class="reg-type">{r.type}</span>
+            </div>
+            <div class="reg-abbr">{r.abbr}</div>
+            <h4 class="reg-name">{r.name}</h4>
+            <p class="reg-detail">{r.detail}</p>
+            <div class="reg-verified">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Verified &amp; Active
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BOTTOM CTA ═════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="content-container cta-inner">
+      <h2 class="cta-title">Ready to Work with<br/><em>Umar &amp; Company?</em></h2>
+      <p class="cta-sub">Get a free consultation for your next industrial project.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="btn-gold">
+          Contact Us
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/services" class="btn-outline">View Services</a>
+      </div>
+    </div>
+  </section>
+
   <Footer />
   <ScrollUpButton />
 </Layout>
 
 <style>
-  .coming-section {
-    position:relative; min-height:100vh; background:#0d0e11;
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden; padding:2rem;
+  /* ── Tokens ── */
+  :root {
+    --gold: #b87716;
+    --gold2: #d4a000;
+    --page: #17181b;
+    --card: #1e1f24;
+    --border: rgba(255,255,255,0.07);
   }
-  .grid-bg {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
-    background-size:52px 52px; pointer-events:none; z-index:0;
+
+  /* ── Hero ── */
+  .about-hero {
+    background: var(--page);
+    padding: 9rem 1.5rem 7rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .blob { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; }
-  .blob--1 { width:500px;height:500px;top:-150px;left:-150px;background:rgba(184,119,22,0.12);animation:bf1 8s ease-in-out infinite alternate; }
-  .blob--2 { width:400px;height:400px;bottom:-120px;right:-100px;background:rgba(184,119,22,0.09);animation:bf1 10s ease-in-out infinite alternate-reverse; }
-  @keyframes bf1 { from{transform:scale(1)} to{transform:scale(1.2) translate(15px,-15px)} }
-  .coming-content {
-    position:relative; z-index:1; text-align:center;
-    display:flex; flex-direction:column; align-items:center; gap:1.5rem;
-    animation:fadeUp 0.8s cubic-bezier(.22,1,.36,1) both;
+  .about-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(184,119,22,0.12) 0%, transparent 65%);
+    pointer-events: none;
   }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:none} }
-  .coming-badge {
-    display:inline-flex; align-items:center; gap:10px;
-    font-family:'DM Sans',sans-serif; font-size:0.72rem; font-weight:600;
-    letter-spacing:0.25em; text-transform:uppercase; color:#b87716;
-    border:1px solid rgba(184,119,22,0.3); border-radius:999px;
-    padding:7px 20px; background:rgba(184,119,22,0.07);
+  .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(184,119,22,0.30); border-radius: 999px;
+    padding: 7px 18px; background: rgba(184,119,22,0.07);
   }
-  .badge-dot {
-    display:inline-block; width:5px; height:5px; border-radius:50%;
-    background:#b87716; opacity:0.8; animation:bp 1.8s ease infinite;
+  .bdot {
+    display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); animation: bp 1.8s ease infinite;
   }
-  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.4)} }
-  .coming-heading {
-    font-family:'Playfair Display','Georgia',serif;
-    font-weight:800; font-size:clamp(3rem,9vw,7.5rem);
-    line-height:1.08; letter-spacing:-0.02em; margin:0;
+  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.5)} }
+  .hero-title {
+    font-size: clamp(3rem, 7vw, 6rem); font-weight: 800;
+    line-height: 1.1; letter-spacing: -0.025em; color: #fff; margin: 1rem 0 0;
   }
-  .h-white { color:#ffffff; font-style:normal; }
-  .h-gold  { color:#b87716; font-style:italic; }
-  .coming-sub {
-    font-family:'DM Sans',sans-serif; color:#6b7280;
-    font-size:clamp(1rem,2vw,1.1rem); line-height:1.8;
-    max-width:420px; margin:0;
+  .hero-title em { color: var(--gold); font-style: italic; font-family: 'Georgia', serif; }
+  .hero-sub {
+    margin-top: 1.25rem; color: rgba(255,255,255,0.48);
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem); line-height: 1.8; max-width: 520px; margin-inline: auto;
   }
-  .loader { display:flex; gap:10px; align-items:center; margin:0.5rem 0; }
-  .ldot {
-    width:10px; height:10px; border-radius:50%;
-    background:#b87716; opacity:0.8; animation:lb 1.2s ease infinite;
+  .hero-slash {
+    position: absolute; bottom: -1px; left: 0; right: 0; height: 60px;
+    background: var(--page);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
   }
-  .ldot:nth-child(2){animation-delay:.2s;background:#d4a000;}
-  .ldot:nth-child(3){animation-delay:.4s;background:#fff;opacity:.25;}
-  @keyframes lb { 0%,80%,100%{transform:scale(1);opacity:.8} 40%{transform:scale(1.5);opacity:1} }
-  .back-btn {
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'DM Sans',sans-serif; font-size:0.9rem; font-weight:600;
-    color:#9ca3af; text-decoration:none;
-    border:1px solid rgba(255,255,255,0.1); border-radius:999px;
-    padding:10px 24px; background:rgba(255,255,255,0.04);
-    transition:color .25s,border-color .25s,background .25s,transform .25s;
-    margin-top:0.5rem;
+
+  /* ── Stats strip ── */
+  .stats-strip {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
-  .back-btn:hover {
-    color:#fff; border-color:rgba(184,119,22,0.4);
-    background:rgba(184,119,22,0.08); transform:translateX(-4px);
+  .stats-inner {
+    display: grid; grid-template-columns: repeat(2, 1fr);
   }
+  @media (min-width: 640px) { .stats-inner { grid-template-columns: repeat(4, 1fr); } }
+  .stat-cell {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; padding: 1.75rem 1rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell:hover { background: rgba(184,119,22,0.04); }
+  .stat-val { font-size: 2rem; font-weight: 800; color: var(--gold); line-height: 1; }
+  .stat-lbl { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+
+  /* ── Sections ── */
+  .section-pad { padding: 5.5rem 1.5rem; background: var(--page); }
+  .bg-alt { background: #15161a; }
+
+  /* ── Split grid ── */
+  .split-grid {
+    display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: center;
+  }
+  @media (min-width: 900px) {
+    .split-grid { grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .split-grid.reverse .split-text { order: 2; }
+    .split-grid.reverse .goal-visual { order: 1; }
+  }
+
+  /* Section labels / titles */
+  .section-label {
+    display: block; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800;
+    line-height: 1.15; color: #f1f5f9; letter-spacing: -0.02em; margin: 0 0 1.25rem;
+  }
+  .section-title em { color: var(--gold); font-style: italic; font-family: 'Georgia', serif; }
+  .sec-header { text-align: center; margin-bottom: 3.5rem; }
+  .sec-sub { color: rgba(255,255,255,0.45); font-size: 0.95rem; line-height: 1.75; max-width: 520px; margin: 0.75rem auto 0; }
+
+  .body-text { font-size: 0.9rem; color: rgba(255,255,255,0.52); line-height: 1.85; margin: 0 0 1rem; }
+  .gold { color: var(--gold); font-weight: 700; }
+
+  /* Checklist */
+  .check-list { list-style: none; padding: 0; margin: 1.25rem 0 0; display: flex; flex-direction: column; gap: 0.7rem; }
+  .check-list li { display: flex; align-items: center; gap: 0.625rem; font-size: 0.87rem; color: rgba(255,255,255,0.65); }
+  .check-icon {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(184,119,22,0.12); border: 1px solid rgba(184,119,22,0.28);
+  }
+
+  /* ── Image mosaic ── */
+  .split-imgs {
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 200px 160px; gap: 0.75rem;
+  }
+  .img-main {
+    grid-column: 1; grid-row: 1 / 3; border-radius: 16px; overflow: hidden;
+    position: relative; border: 1px solid var(--border);
+  }
+  .img-main img { width: 100%; height: 100%; object-fit: cover; }
+  .img-badge {
+    position: absolute; bottom: 14px; left: 14px;
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em;
+    background: var(--gold); color: #0d0e11; padding: 5px 12px; border-radius: 999px;
+  }
+  .img-small { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+  .img-small img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Mission / Vision ── */
+  .mv-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) { .mv-grid { grid-template-columns: 1fr 1fr; } }
+  .mv-card {
+    background: var(--page); border: 1px solid var(--border); border-radius: 20px;
+    padding: 2.5rem; position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .mv-card:hover { border-color: rgba(184,119,22,0.35); transform: translateY(-4px); }
+  .mv-icon {
+    width: 52px; height: 52px; border-radius: 13px;
+    background: rgba(184,119,22,0.10); border: 1px solid rgba(184,119,22,0.25);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;
+  }
+  .mv-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+  .mv-title {
+    font-size: 1.6rem; font-weight: 800; color: #f1f5f9; line-height: 1.2;
+    letter-spacing: -0.015em; margin: 0.5rem 0 1rem;
+  }
+  .mv-title em { color: var(--gold); font-style: italic; font-family: 'Georgia', serif; }
+  .mv-desc { font-size: 0.87rem; color: rgba(255,255,255,0.50); line-height: 1.8; margin: 0; }
+  .mv-accent-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.7;
+  }
+
+  /* ── Values ── */
+  .values-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); border-radius: 18px; overflow: hidden; }
+  @media (min-width: 768px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .values-grid { grid-template-columns: repeat(4, 1fr); } }
+  .value-card {
+    background: var(--card); padding: 2rem 1.75rem;
+    transition: background 0.3s;
+  }
+  .value-card:hover { background: #22232a; }
+  .value-num { font-family: monospace; font-size: 2.5rem; font-weight: 900; color: rgba(184,119,22,0.18); line-height: 1; margin-bottom: 0.75rem; }
+  .value-line { width: 36px; height: 3px; background: var(--gold); border-radius: 2px; margin-bottom: 1rem; opacity: 0.8; }
+  .value-title { font-size: 1.05rem; font-weight: 800; color: #f1f5f9; margin: 0 0 0.6rem; }
+  .value-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.75; margin: 0; }
+
+  /* ── Goals ── */
+  .goal-visual { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid var(--border); }
+  .goal-visual img { width: 100%; height: 100%; object-fit: cover; }
+  .goal-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.45)); }
+  .goal-stat-box {
+    position: absolute; bottom: 20px; right: 20px;
+    background: rgba(184,119,22,0.90); border-radius: 12px; padding: 0.75rem 1.25rem;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    backdrop-filter: blur(8px);
+  }
+  .gsb-val { font-size: 1.5rem; font-weight: 800; color: #0d0e11; line-height: 1; }
+  .gsb-lbl { font-size: 0.6rem; font-weight: 700; color: rgba(0,0,0,0.65); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ── Commitments ── */
+  .commit-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 640px) { .commit-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .commit-grid { grid-template-columns: repeat(3, 1fr); } }
+  .commit-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.75rem; transition: border-color 0.3s, transform 0.3s;
+  }
+  .commit-card:hover { border-color: rgba(184,119,22,0.35); transform: translateY(-3px); }
+  .commit-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(184,119,22,0.10); border: 1px solid rgba(184,119,22,0.22);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+  }
+  .commit-title { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; margin: 0 0 0.5rem; }
+  .commit-desc { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.7; margin: 0; }
+
+  /* ── Quality ── */
+  .quality-visual { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid var(--border); }
+  .quality-visual img { width: 100%; height: 100%; object-fit: cover; }
+  .qv-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); }
+  .qv-card {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(23,24,27,0.88); border: 1px solid rgba(184,119,22,0.30); border-radius: 14px;
+    padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem;
+    backdrop-filter: blur(10px); z-index: 1;
+  }
+  .qv-card span { font-size: 0.78rem; font-weight: 700; color: #f1f5f9; line-height: 1.35; }
+  .quality-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .qbadge {
+    font-size: 0.7rem; font-weight: 600; padding: 5px 14px; border-radius: 999px;
+    background: rgba(184,119,22,0.10); border: 1px solid rgba(184,119,22,0.25); color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Registrations ── */
+  .reg-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 640px) { .reg-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .reg-grid { grid-template-columns: repeat(4, 1fr); } }
+  .reg-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 1.75rem; display: flex; flex-direction: column; gap: 0.6rem;
+    transition: border-color 0.3s, transform 0.3s; position: relative; overflow: hidden;
+  }
+  .reg-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--gold), transparent); }
+  .reg-card:hover { border-color: rgba(184,119,22,0.38); transform: translateY(-3px); }
+  .reg-top { margin-bottom: 0.25rem; }
+  .reg-type { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); background: rgba(184,119,22,0.12); border: 1px solid rgba(184,119,22,0.25); border-radius: 999px; padding: 3px 10px; }
+  .reg-abbr { font-family: monospace; font-size: 2rem; font-weight: 900; color: var(--gold); line-height: 1; }
+  .reg-name { font-size: 0.88rem; font-weight: 700; color: #f1f5f9; margin: 0; line-height: 1.35; }
+  .reg-detail { font-size: 0.75rem; color: rgba(255,255,255,0.40); margin: 0; line-height: 1.6; flex: 1; }
+  .reg-verified { display: inline-flex; align-items: center; gap: 5px; font-size: 0.68rem; font-weight: 600; color: #10b981; background: rgba(16,185,129,0.10); border: 1px solid rgba(16,185,129,0.22); border-radius: 999px; padding: 3px 10px; width: fit-content; }
+
+  /* ── CTA ── */
+  .cta-section { background: #15161a; padding: 5.5rem 1.5rem; border-top: 1px solid var(--border); }
+  .cta-inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .cta-title { font-size: clamp(1.9rem, 4vw, 3.2rem); font-weight: 800; color: #fff; margin: 0; line-height: 1.15; }
+  .cta-title em { color: var(--gold); font-style: italic; font-family: 'Georgia', serif; }
+  .cta-sub { color: rgba(255,255,255,0.42); font-size: 1rem; margin: 0; }
+  .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 32px; border-radius: 999px;
+    background: var(--gold); color: #0d0e11; font-size: 0.875rem; font-weight: 800;
+    text-decoration: none; box-shadow: 0 4px 20px rgba(184,119,22,0.38);
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(184,119,22,0.50); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 32px; border-radius: 999px;
+    border: 1px solid rgba(184,119,22,0.32); color: var(--gold);
+    background: rgba(184,119,22,0.06); font-size: 0.875rem; font-weight: 700; text-decoration: none;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .btn-outline:hover { background: rgba(184,119,22,0.12); border-color: rgba(184,119,22,0.55); transform: translateY(-2px); }
 </style>
