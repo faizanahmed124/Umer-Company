@@ -47,6 +47,20 @@ const stats = [
     <div class="hero-slash" aria-hidden="true"></div>
   </section>
 
+  <!-- ══ TEAM IMAGE ════════════════════════════════════════ -->
+  <div class="team-img-section">
+    <div class="content-container">
+      <div class="team-img-wrap">
+        <img src="/teamimage.png" alt="Umar & Company Team" class="team-img" loading="eager"/>
+        <div class="team-img-overlay"></div>
+        <div class="team-img-label">
+          <span class="til-badge">Our Team</span>
+          <p class="til-text">The dedicated professionals behind every successful project</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ══ STATS STRIP ════════════════════════════════════════ -->
   <div class="stats-strip">
     <div class="content-container stats-inner">
@@ -308,11 +322,11 @@ const stats = [
       <h2 class="cta-title">Ready to Work with<br/><em>Umar &amp; Company?</em></h2>
       <p class="cta-sub">Get a free consultation for your next industrial project.</p>
       <div class="cta-btns">
-        <a href="/contact" class="btn-gold">
+        <a href="/tailcast/contact" class="btn-gold">
           Contact Us
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </a>
-        <a href="/services" class="btn-outline">View Services</a>
+        <a href="/tailcast/services" class="btn-outline">View Services</a>
       </div>
     </div>
   </section>
@@ -370,6 +384,46 @@ const stats = [
     position: absolute; bottom: -1px; left: 0; right: 0; height: 60px;
     background: var(--page);
     clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+
+  /* ── Team Image ── */
+  .team-img-section {
+    background: var(--page);
+    padding: 0 1.5rem 4rem;
+  }
+  .team-img-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    max-height: 500px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  }
+  .team-img {
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .team-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(23,24,27,0.80) 0%, rgba(23,24,27,0.10) 50%, transparent 100%);
+  }
+  .team-img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem 2rem 1.75rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .til-badge {
+    display: inline-block; width: fit-content;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); background: rgba(184,119,22,0.15);
+    border: 1px solid rgba(184,119,22,0.30); border-radius: 999px; padding: 4px 12px;
+  }
+  .til-text {
+    font-size: 0.88rem; color: rgba(255,255,255,0.55); margin: 0;
   }
 
   /* ── Stats strip ── */

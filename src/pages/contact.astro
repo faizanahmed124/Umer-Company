@@ -3,106 +3,273 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ScrollUpButton from '../components/ScrollUpButton.astro';
+
+const contactInfo = [
+  {
+    icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>`,
+    label: "Head Office",
+    value: "M3MH+86H, Sheikhupura, Punjab",
+    sub: "Near Lahore–Sheikhupura–Faisalabad Road",
+  },
+  {
+    icon: `<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.18 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>`,
+    label: "Phone / WhatsApp",
+    value: "+92 300 123 4567",
+    sub: "Call or WhatsApp anytime",
+    href: "tel:+923001234567",
+  },
+  {
+    icon: `<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>`,
+    label: "Email Address",
+    value: "info@umarcompany.com",
+    sub: "We reply within 24 hours",
+    href: "mailto:info@umarcompany.com",
+  },
+  {
+    icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,
+    label: "Working Hours",
+    value: "Mon – Sat: 9:00 AM – 6:00 PM",
+    sub: "Closed on Sundays & Public Holidays",
+  },
+];
+
+const services = ["Material Supply","Mechanical Services","Insulation & Ducting","Loading & Unloading","Material Packing","Wooden Packing","Safety Compliance","Other"];
 ---
 
-<Layout title="Contact - Umar & Company" description="Contact page - Umar & Company">
+<Layout title="Contact - Umar & Company" description="Contact Umar & Company — Get a free quote today">
   <Navbar />
-  <section class="coming-section">
-    <div class="blob blob--1" aria-hidden="true"></div>
-    <div class="blob blob--2" aria-hidden="true"></div>
-    <div class="grid-bg" aria-hidden="true"></div>
-    <div class="coming-content">
-      <div class="coming-badge">
-        <span class="badge-dot"></span>
-        Under Construction
-        <span class="badge-dot"></span>
-      </div>
-      <h1 class="coming-heading">
-        <span class="h-white">Faizan is </span><span class="h-gold">Working</span><br/>
-        <span class="h-white">on </span><span class="h-gold">Contact</span>
-      </h1>
-      <p class="coming-sub">Our contact page is almost ready. We will be in touch soon.</p>
-      <div class="loader" aria-label="Loading">
-        <span class="ldot"></span>
-        <span class="ldot"></span>
-        <span class="ldot"></span>
-      </div>
-      <a href="/" class="back-btn">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-        Back to Home
-      </a>
+
+  <!-- ══ HERO ══ -->
+  <section class="contact-hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <span class="hero-badge"><span class="bdot"></span> Get In Touch <span class="bdot"></span></span>
+      <h1 class="hero-title">Contact <em>Umar &amp; Company</em></h1>
+      <p class="hero-sub">Have a project in mind? Need a quote? Our team is ready to help. Reach out and we'll get back to you within 24 hours.</p>
     </div>
   </section>
+
+  <!-- ══ CONTACT GRID ══ -->
+  <section class="contact-section">
+    <div class="content-container contact-grid">
+
+      <!-- LEFT — Info cards + map placeholder -->
+      <div class="info-col">
+        <h2 class="info-heading">Reach <em>Us</em></h2>
+        <div class="info-cards">
+          {contactInfo.map(c => (
+            <div class="info-card">
+              <div class="info-icon">
+                <svg width="20" height="20" fill="none" stroke="#b87716" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
+                  set:html={c.icon}></svg>
+              </div>
+              <div class="info-text">
+                <span class="info-label">{c.label}</span>
+                {c.href
+                  ? <a class="info-value" href={c.href}>{c.value}</a>
+                  : <span class="info-value">{c.value}</span>
+                }
+                <span class="info-sub">{c.sub}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Google Maps embed -->
+        <div class="map-box">
+          <iframe
+            class="map-iframe"
+            src="https://www.google.com/maps?q=31.68331,74.07811&z=16&output=embed"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Umar & Company Location"
+          ></iframe>
+          <div class="map-footer">
+            <div class="map-coords">
+              <svg width="14" height="14" fill="none" stroke="#b87716" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>M3MH+86H, Sheikhupura, Punjab, Pakistan</span>
+            </div>
+            <a
+              href="https://maps.google.com/?q=31.68331,74.07811"
+              target="_blank"
+              rel="noopener"
+              class="map-btn"
+            >
+              Open in Google Maps
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — Contact form -->
+      <div class="form-col">
+        <div class="form-card">
+          <div class="form-header">
+            <h2 class="form-title">Send Us a <em>Message</em></h2>
+            <p class="form-sub">Fill in the form and we'll get back to you within 24 hours with a free quote.</p>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <div class="field-row">
+              <div class="field">
+                <label>Full Name <span class="req">*</span></label>
+                <input type="text" name="name" placeholder="abc " required/>
+              </div>
+              <div class="field">
+                <label>Phone / WhatsApp <span class="req">*</span></label>
+                <input type="tel" name="phone" placeholder="+92 300 0000000" required/>
+              </div>
+            </div>
+            <div class="field">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="example@email.com"/>
+            </div>
+            <div class="field">
+              <label>Company / Organization</label>
+              <input type="text" name="company" placeholder="Your company name (optional)"/>
+            </div>
+            <div class="field">
+              <label>Service Required <span class="req">*</span></label>
+              <select name="service" required>
+                <option value="">Select a service</option>
+                {services.map(s => <option>{s}</option>)}
+              </select>
+            </div>
+            <div class="field">
+              <label>Project Location</label>
+              <input type="text" name="location" placeholder="e.g. Faisalabad, Sheikhupura..."/>
+            </div>
+            <div class="field">
+              <label>Message / Project Details <span class="req">*</span></label>
+              <textarea name="message" rows="4" placeholder="Describe your project requirements, timeline, and any specific details..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submitBtn">
+              <span id="btnText">Send Message</span>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+            <p class="form-note">
+              <svg width="12" height="12" fill="none" stroke="#10b981" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Your information is kept private and never shared.
+            </p>
+          </form>
+
+          <!-- Success message (hidden) -->
+          <div class="success-msg" id="successMsg" style="display:none">
+            <div class="success-icon">
+              <svg width="28" height="28" fill="none" stroke="#10b981" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Message Sent!</h3>
+            <p>Thank you for reaching out. We'll contact you within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <Footer />
   <ScrollUpButton />
 </Layout>
 
 <style>
-  .coming-section {
-    position:relative; min-height:100vh; background:#0d0e11;
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden; padding:2rem;
+  :root { --gold:#b87716; --gold2:#d4a000; --page:#17181b; --card:#1e1f24; --border:rgba(255,255,255,0.07); }
+
+  /* Hero */
+  .contact-hero { background:var(--page);padding:9rem 1.5rem 5rem;text-align:center;position:relative;overflow:hidden; }
+  .hero-glow { position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,119,22,0.12) 0%,transparent 65%);pointer-events:none; }
+  .hero-inner { position:relative;z-index:1;max-width:680px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.25rem; }
+  .hero-badge { display:inline-flex;align-items:center;gap:10px;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,119,22,0.3);border-radius:999px;padding:7px 18px;background:rgba(184,119,22,0.07); }
+  .bdot { display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);animation:bp 1.8s ease infinite; }
+  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.5)} }
+  .hero-title { font-size:clamp(2.4rem,6vw,5rem);font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:#fff;margin:0; }
+  .hero-title em { color:var(--gold);font-style:italic;font-family:'Georgia',serif; }
+  .hero-sub { max-width:520px;color:rgba(255,255,255,0.48);font-size:clamp(0.9rem,1.4vw,1rem);line-height:1.8;margin:0; }
+
+  /* Contact section */
+  .contact-section { background:var(--page);padding:5rem 1.5rem 7rem; }
+  .contact-grid { display:grid;grid-template-columns:1fr;gap:3.5rem;align-items:start; }
+  @media(min-width:960px){.contact-grid{grid-template-columns:1fr 1.5fr;gap:4.5rem;}}
+
+  /* Info col */
+  .info-heading { font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#f1f5f9;letter-spacing:-0.02em;margin:0 0 1.75rem; }
+  .info-heading em { color:var(--gold);font-style:italic;font-family:'Georgia',serif; }
+  .info-cards { display:flex;flex-direction:column;gap:0.875rem;margin-bottom:1.75rem; }
+  .info-card { display:flex;align-items:flex-start;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:border-color 0.3s,transform 0.3s; }
+  .info-card:hover { border-color:rgba(184,119,22,0.32);transform:translateX(4px); }
+  .info-icon { flex-shrink:0;width:44px;height:44px;border-radius:11px;background:rgba(184,119,22,0.10);border:1px solid rgba(184,119,22,0.22);display:flex;align-items:center;justify-content:center; }
+  .info-text { display:flex;flex-direction:column;gap:2px; }
+  .info-label { font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold); }
+  .info-value { font-size:0.9rem;font-weight:700;color:#f1f5f9;text-decoration:none;transition:color 0.2s; }
+  a.info-value:hover { color:var(--gold); }
+  .info-sub { font-size:0.72rem;color:rgba(255,255,255,0.35); }
+
+  /* Map */
+  .map-box { background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden; }
+  .map-iframe { width:100%;height:260px;border:none;display:block;filter:grayscale(20%) contrast(1.05); }
+  .map-footer { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;padding:1rem 1.25rem; }
+  .map-coords { display:flex;align-items:center;gap:6px;font-size:0.75rem;color:rgba(255,255,255,0.45);flex:1;min-width:0; }
+  .map-coords span { white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+  .map-btn { flex-shrink:0;display:inline-flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:700;color:var(--gold);background:rgba(184,119,22,0.10);border:1px solid rgba(184,119,22,0.25);border-radius:999px;padding:6px 14px;text-decoration:none;transition:background 0.25s; }
+  .map-btn:hover { background:rgba(184,119,22,0.20); }
+
+  /* Form card */
+  .form-card { background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.25rem;position:relative;overflow:hidden; }
+  .form-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),transparent); }
+  .form-header { margin-bottom:1.75rem; }
+  .form-title { font-size:1.5rem;font-weight:800;color:#f1f5f9;margin:0 0 0.5rem;letter-spacing:-0.015em; }
+  .form-title em { color:var(--gold);font-style:italic;font-family:'Georgia',serif; }
+  .form-sub { font-size:0.82rem;color:rgba(255,255,255,0.42);margin:0;line-height:1.7; }
+
+  .contact-form { display:flex;flex-direction:column;gap:1.125rem; }
+  .field-row { display:grid;grid-template-columns:1fr;gap:1.125rem; }
+  @media(min-width:540px){.field-row{grid-template-columns:1fr 1fr;}}
+  .field { display:flex;flex-direction:column;gap:0.4rem; }
+  .field label { font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.45);letter-spacing:0.05em; }
+  .req { color:var(--gold); }
+  .field input,.field select,.field textarea {
+    background:#131420;border:1px solid rgba(255,255,255,0.10);border-radius:10px;
+    padding:11px 14px;color:#f1f5f9;font-size:0.875rem;outline:none;resize:vertical;
+    transition:border-color 0.25s,box-shadow 0.25s;font-family:inherit;width:100%;box-sizing:border-box;
   }
-  .grid-bg {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
-    background-size:52px 52px; pointer-events:none; z-index:0;
+  .field input:focus,.field select:focus,.field textarea:focus {
+    border-color:rgba(184,119,22,0.55);
+    box-shadow:0 0 0 3px rgba(184,119,22,0.08);
   }
-  .blob { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; }
-  .blob--1 { width:500px;height:500px;top:-150px;left:-150px;background:rgba(184,119,22,0.12);animation:bf1 8s ease-in-out infinite alternate; }
-  .blob--2 { width:400px;height:400px;bottom:-120px;right:-100px;background:rgba(184,119,22,0.09);animation:bf1 10s ease-in-out infinite alternate-reverse; }
-  @keyframes bf1 { from{transform:scale(1)} to{transform:scale(1.2) translate(15px,-15px)} }
-  .coming-content {
-    position:relative; z-index:1; text-align:center;
-    display:flex; flex-direction:column; align-items:center; gap:1.5rem;
-    animation:fadeUp 0.8s cubic-bezier(.22,1,.36,1) both;
-  }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:none} }
-  .coming-badge {
-    display:inline-flex; align-items:center; gap:10px;
-    font-family:'DM Sans',sans-serif; font-size:0.72rem; font-weight:600;
-    letter-spacing:0.25em; text-transform:uppercase; color:#b87716;
-    border:1px solid rgba(184,119,22,0.3); border-radius:999px;
-    padding:7px 20px; background:rgba(184,119,22,0.07);
-  }
-  .badge-dot {
-    display:inline-block; width:5px; height:5px; border-radius:50%;
-    background:#b87716; opacity:0.8; animation:bp 1.8s ease infinite;
-  }
-  @keyframes bp { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:.3;transform:scale(1.4)} }
-  .coming-heading {
-    font-family:'Playfair Display','Georgia',serif;
-    font-weight:800; font-size:clamp(3rem,9vw,7.5rem);
-    line-height:1.08; letter-spacing:-0.02em; margin:0;
-  }
-  .h-white { color:#ffffff; font-style:normal; }
-  .h-gold  { color:#b87716; font-style:italic; }
-  .coming-sub {
-    font-family:'DM Sans',sans-serif; color:#6b7280;
-    font-size:clamp(1rem,2vw,1.1rem); line-height:1.8;
-    max-width:420px; margin:0;
-  }
-  .loader { display:flex; gap:10px; align-items:center; margin:0.5rem 0; }
-  .ldot {
-    width:10px; height:10px; border-radius:50%;
-    background:#b87716; opacity:0.8; animation:lb 1.2s ease infinite;
-  }
-  .ldot:nth-child(2){animation-delay:.2s;background:#d4a000;}
-  .ldot:nth-child(3){animation-delay:.4s;background:#fff;opacity:.25;}
-  @keyframes lb { 0%,80%,100%{transform:scale(1);opacity:.8} 40%{transform:scale(1.5);opacity:1} }
-  .back-btn {
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'DM Sans',sans-serif; font-size:0.9rem; font-weight:600;
-    color:#9ca3af; text-decoration:none;
-    border:1px solid rgba(255,255,255,0.1); border-radius:999px;
-    padding:10px 24px; background:rgba(255,255,255,0.04);
-    transition:color .25s,border-color .25s,background .25s,transform .25s;
-    margin-top:0.5rem;
-  }
-  .back-btn:hover {
-    color:#fff; border-color:rgba(184,119,22,0.4);
-    background:rgba(184,119,22,0.08); transform:translateX(-4px);
-  }
+  .field select option { background:#1e1f24; }
+
+  .form-submit { display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border-radius:999px;background:var(--gold);color:#0d0e11;border:none;font-size:0.9rem;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(184,119,22,0.38);transition:background 0.25s,transform 0.25s,box-shadow 0.25s; }
+  .form-submit:hover { background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,119,22,0.50); }
+  .form-note { display:flex;align-items:center;gap:6px;font-size:0.7rem;color:rgba(255,255,255,0.28);margin:0;justify-content:center; }
+
+  /* Success */
+  .success-msg { display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;padding:3rem 1rem; }
+  .success-icon { width:64px;height:64px;border-radius:50%;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);display:flex;align-items:center;justify-content:center; }
+  .success-msg h3 { font-size:1.3rem;font-weight:800;color:#f1f5f9;margin:0; }
+  .success-msg p { font-size:0.88rem;color:rgba(255,255,255,0.45);margin:0;line-height:1.7; }
 </style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const successMsg = document.getElementById('successMsg')!;
+  const btn = document.getElementById('submitBtn') as HTMLButtonElement;
+  const btnText = document.getElementById('btnText')!;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btnText.textContent = 'Sending...';
+    setTimeout(() => {
+      form.style.display = 'none';
+      successMsg.style.display = 'flex';
+    }, 1200);
+  });
+</script>
