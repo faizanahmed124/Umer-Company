@@ -24,23 +24,6 @@ const services = [
   },
   {
     id: "02",
-    title: "Material 2 Supplier",
-    subtitle: "GI Pipes, Steel & Wooden Materials",
-    category: "Supply",
-    description:
-      "We provide a comprehensive range of GI pipes, structural steel sections, wooden crates, and packaging materials. Every item is quality-checked before delivery to ensure full project compliance.",
-    features: [
-      "GI Pipes — all sizes & schedules",
-      "Structural Steel & Metal Sections",
-      "Wooden Crates & Pallets",
-      "Insulation Raw Material",
-    ],
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80",
-    icon: `<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>`,
-    accent: "#d4a000",
-  },
-  {
-    id: "03",
     title: "Mechanical Services",
     subtitle: "Plant Installation & Fabrication",
     category: "Mechanical",
@@ -57,7 +40,7 @@ const services = [
     accent: "#c49a1a",
   },
   {
-    id: "04",
+    id: "03",
     title: "Insulation & Ducting",
     subtitle: "Thermal & Acoustic Solutions",
     category: "Insulation",
@@ -74,7 +57,7 @@ const services = [
     accent: "#e8b84b",
   },
   {
-    id: "05",
+    id: "04",
     title: "Loading & Unloading",
     subtitle: "Heavy-Duty Material Handling",
     category: "Labor",
@@ -90,57 +73,9 @@ const services = [
     icon: `<path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><path d="M9 15h14"/>`,
     accent: "#f0a500",
   },
-  {
-    id: "06",
-    title: "Material Packing",
-    subtitle: "Industrial Packaging Solutions",
-    category: "Packing",
-    description:
-      "We offer industrial-grade material packing services to protect goods during storage and transit. Our packing methods conform to international standards, minimising damage and ensuring safe delivery of all materials.",
-    features: [
-      "Shrink-Wrap & Stretch Film Packing",
-      "Bubble Wrap & Foam Protection",
-      "Pallet Wrapping & Strapping",
-      "Labelling & Documentation",
-    ],
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=80",
-    icon: `<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>`,
-    accent: "#b8860b",
-  },
-  {
-    id: "07",
-    title: "Wooden Packing",
-    subtitle: "Custom Wooden Crating & Cases",
-    category: "Packing",
-    description:
-      "We fabricate and supply custom wooden crates, cases, and pallets for industrial equipment, heavy machinery, and export-standard shipments. All wooden packing is ISPM-15 compliant for international transit.",
-    features: [
-      "Custom Wooden Crates (all sizes)",
-      "Export-Standard ISPM-15 Compliant",
-      "Heavy Equipment Wooden Cases",
-      "Skids & Industrial Pallets",
-    ],
-    image: "https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=900&q=80",
-    icon: `<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>`,
-    accent: "#c0820a",
-  },
-  {
-    id: "08",
-    title: "Safety Cautions",
-    subtitle: "HSE Compliance & Safety Management",
-    category: "Safety",
-    description:
-      "We enforce strict Health, Safety & Environment (HSE) practices on every project. Our safety-trained workforce follows all site regulations, PPE requirements, and risk assessment protocols to ensure zero-incident operations.",
-    features: [
-      "Full PPE Provision & Compliance",
-      "On-Site HSE Supervision",
-      "Risk Assessment & Method Statements",
-      "Safety Induction for All Workers",
-    ],
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&q=80",
-    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
-    accent: "#daa520",
-  },
+
+
+
 ];
 
 const categories = ["All", ...new Set(services.map(s => s.category))];

@@ -1,0 +1,89 @@
+---
+// ScrollReveal.astro
+// Usage: Kisi bhi section ko is component se wrap karo
+// <ScrollReveal> ... </ScrollReveal>
+// Optional props:
+//   animation: "fadeUp" | "fadeLeft" | "fadeRight" | "fadeIn" | "scaleUp"
+//   delay: "0" | "100" | "200" | "300" | "400" | "500"
+//   duration: "fast" | "normal" | "slow"
+
+interface Props {
+  animation?: "fadeUp" | "fadeLeft" | "fadeRight" | "fadeIn" | "scaleUp";
+  delay?: "0" | "100" | "200" | "300" | "400" | "500";
+  duration?: "fast" | "normal" | "slow";
+  class?: string;
+}
+
+const {
+  animation = "fadeUp",
+  delay = "0",
+  duration = "normal",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class={`reveal ${animation} delay-${delay} dur-${duration} ${className}`}
+  data-reveal
+>
+  <slot />
+</div>
+
+<style>
+  /* Initial hidden states */
+  [data-reveal] {
+    opacity: 0;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+
+  /* Duration */
+  [data-reveal].dur-fast     { transition-duration: 0.5s; }
+  [data-reveal].dur-normal   { transition-duration: 0.75s; }
+  [data-reveal].dur-slow     { transition-duration: 1.1s; }
+
+  /* Delays */
+  [data-reveal].delay-0   { transition-delay: 0ms; }
+  [data-reveal].delay-100 { transition-delay: 100ms; }
+  [data-reveal].delay-200 { transition-delay: 200ms; }
+  [data-reveal].delay-300 { transition-delay: 300ms; }
+  [data-reveal].delay-400 { transition-delay: 400ms; }
+  [data-reveal].delay-500 { transition-delay: 500ms; }
+
+  /* Starting transforms */
+  [data-reveal].fadeUp    { transform: translateY(48px); }
+  [data-reveal].fadeLeft  { transform: translateX(-56px); }
+  [data-reveal].fadeRight { transform: translateX(56px); }
+  [data-reveal].fadeIn    { transform: none; }
+  [data-reveal].scaleUp   { transform: scale(0.88); }
+
+  /* Visible state — JS adds this class */
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none !important;
+  }
+</style>
+
+<script>
+  // Intersection Observer — jab element screen mein aaye to animate karo
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          // Ek baar animate hone ke baad observe karna band karo
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,      // 12% visible hone par trigger
+      rootMargin: "0px 0px -60px 0px", // thora pehle trigger karo
+    }
+  );
+
+  // Sare reveal elements observe karo
+  document.querySelectorAll("[data-reveal]").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
